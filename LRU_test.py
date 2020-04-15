@@ -9,7 +9,7 @@ class LRU_test:
         lru_obj.put(3)
         lru_obj.put(4)
         lru_obj.put(5)
-
+        assert [2,3,4,5] == lru_obj.get_cache(), "put failed"
         assert 3 == lru_obj.get(1) ,"get failed"
         print(lru_obj.get_cache())
         assert [2,4,5,3] == lru_obj.get_cache(), "get_cache failed"
