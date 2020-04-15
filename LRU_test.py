@@ -1,4 +1,3 @@
-import unittest
 from LRU_cache import LRU_cache
 
 class LRU_test:
