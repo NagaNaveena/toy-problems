@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>My TodoList</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+        <!-- <link rel="stylesheet" href="stylesheet.css"> -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+    <body>
+        <br>
+        <div class="container">
+            <div class ="row" >
+                <div class="col-sm-4"></div>
+                    <div class="col-sm-4">
+                        <div id="myDIV" class="header">
+                            <h2>To Do List</h2>
+                            <br>
+                            <input type="text" id="myInput" placeholder="Task name"> 
+                            <span onclick="newElement()" class="addBtn"><button> Add</button></span>
+                        </div>
+                        <br>
+                        <ul id="myUL">
+                            <li onclick="doThis()" class="target"><button>click Me</button> Stand up meeting at 9 a.m. </li>
+                            <li onclick="doThis()" class="target"><button>click Me</button> Write DJ's</li>
+                            <li onclick="doThis()" class="target"><button>click Me</button>Finish given assignments</li>
+                            <li onclick="doThis()" class="target"><button>click Me</button>Lunch at 1 p.m.</li>
+                            <li onclick="doThis()" class="target"><button>click Me</button >Attend Softskills class</li>
+                            <li onclick="doThis()" class="target"><button>click Me</button>Work on CP question</li>
+                        </ul>
+                    </div>
+                <div class="col-sm-4"></div>
+            </div>
+        </div>
+        <script>
+            // Create a "close" button and append it to each list item
+            var myNodelist = document.getElementsByTagName("li");
+            var i;
+            for (i = 0; i < myNodelist.length; i++) {
+                var span = document.createElement("SPAN");
+                var txt = document.createTextNode("\u00D7");
+                span.className = "close";
+                span.appendChild(txt);
+                myNodelist[i].appendChild(span);
+            }
+
+            // Click on a close button to hide the current list item
+            var close = document.getElementsByClassName("close");
+            var k;
+            for (k = 0; k < close.length; k++) {
+                close[k].onclick = function() {
+                    var div = this.parentElement;
+                    div.style.display = "none";
+                }
+            }
+
+
+            //Add a "checked" symbol when clicking on a list item
+            function doThis() {
+                let el = document.querySelector('.target');
+                el.style.setProperty('text-decoration', 'line-through');
+  
+            }
+
+            
+
+            // Create a new list item when clicking on the "Add" button
+            function newElement() {
+                var li = document.createElement("li");
+                var inputValue = document.getElementById("myInput").value;
+                var t = document.createTextNode(inputValue);
+                li.appendChild(t);
+                    if (inputValue === '') {
+                        alert("You must write something!");
+                    } 
+                    else {
+                        document.getElementById("myUL").appendChild(li);
+                    }
+                document.getElementById("myInput").value = "";
+
+                var span = document.createElement("SPAN");
+                var txt = document.createTextNode("\u00D7");
+                span.className = "close";
+                span.appendChild(txt);
+                li.appendChild(span);
+
+                for (i = 0; i < close.length; i++) {
+                    close[i].onclick = function() {
+                        var div = this.parentElement;
+                        div.style.display = "none";
+                    }
+                }
+            }
+        </Script>
+    </body>
+</html>
