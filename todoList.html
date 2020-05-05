@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>My TodoList</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+    <body>
+        <br>
+        <div class="container">
+            <div class ="row" >
+                <div class="col-sm-4"></div>
+                    <div class="col-sm-4">
+                        <div id="myDIV" class="header">
+                            <h2>To Do List</h2>
+                            <br>
+                            <input type="text" id="myInput" placeholder="Task name"> 
+                            <span onclick="newElement()" class="addBtn"><button> Add</button></span>
+                        </div>
+                        <br>
+                        <ul id="myUL">
+                            <li> Stand up meeting at 9 a.m. </li><br>
+                            <li>Write DJ's</li><br>
+                            <li>Finish given assignments</li><br>
+                            <li>Lunch at 1 p.m.</li><br>
+                            <li>Attend Softskills class</li><br>
+                            <li>Work on CP question</li><br>
+                        </ul>
+                    </div>
+                <div class="col-sm-4"></div>
+            </div>
+        </div>
+        <script>
+            // Create a "close" button and append it to each list item
+            var myNodelist = document.getElementsByTagName("li");
+            var i;
+            for (i = 0; i < myNodelist.length; i++) {
+                var span = document.createElement("SPAN");
+                var btn = document.createElement("BUTTON");
+                btn.innerHTML= "click me"
+                var txt = document.createTextNode("\u00D7");
+                span.className = "close";
+                span.appendChild(txt);
+                myNodelist[i].appendChild(span);
+                myNodelist[i].appendChild(btn)
+            }
+
+            // Click on a close button to hide the current list item
+            var close = document.getElementsByClassName("close");
+            var k;
+            for (k = 0; k < close.length; k++) {
+                close[k].onclick = function() {
+                    var div = this.parentElement;
+                    div.style.display = "none";
+                }
+            }
+
+
+            //Add a "checked" symbol when clicking on a list item
+             var t = document.getElementsByName("BUTTON");
+             var j;
+             for (j = 0; j < t.length; j++)
+                t[j].onclick = function () {
+                    var el = this.parentElement;
+                    el.style.setProperty('text-decoration', 'line-through');
+            }
+
+            
+
+            // Create a new list item when clicking on the "Add" button
+            function newElement() {
+                var li = document.createElement("li");
+                var inputValue = document.getElementById("myInput").value;
+                var t = document.createTextNode(inputValue);
+                li.appendChild(t);
+                    if (inputValue === '') {
+                        alert("You must write something!");
+                    } 
+                    else {
+                        document.getElementById("myUL").appendChild(li);
+                    }
+                document.getElementById("myInput").value = "";
+
+                var span = document.createElement("SPAN");
+                var txt = document.createTextNode("\u00D7");
+                span.className = "close";
+                span.appendChild(txt);
+                li.appendChild(span);
+
+                for (i = 0; i < close.length; i++) {
+                    close[i].onclick = function() {
+                        var div = this.parentElement;
+                        div.style.display = "none";
+                    }
+                }
+            }
+        </Script>
+    </body>
+</html>
